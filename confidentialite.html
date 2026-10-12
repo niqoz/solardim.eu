@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confidentialité — SolarDim</title>
+<style>
+  :root { --paper: #FAF6EF; --ink: #2E3A40; --muted: #5E6A70; --line: #E3DACB; --accent: #C05838; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+         font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 44rem; margin: 0 auto; padding: 2.5rem 16px 4rem; }
+  h1, h2 { font-family: Georgia, serif; font-weight: 600; line-height: 1.25; }
+  h1 { color: var(--accent); margin: 0 0 .25rem; font-size: 2rem; }
+  h2 { margin: 2.2rem 0 .6rem; font-size: 1.3rem; }
+  .date { color: var(--muted); margin: 0 0 1.5rem; }
+  .summary { border-left: 3px solid var(--accent); padding: .2rem 0 .2rem 1rem; }
+  a { color: var(--accent); }
+  ul { padding-left: 1.3rem; }
+  .table { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: .95rem; min-width: 34rem; }
+  th, td { text-align: left; vertical-align: top; padding: .55rem .6rem; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: .95rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Politique de confidentialité</h1>
+  <p class="date">Dernière mise à jour : 12 octobre 2026</p>
+
+  <p>SolarDim est une application de dimensionnement solaire destinée aux installateurs, disponible sur Android et sur Windows. Cette page explique quelles données elle traite, où elles vont et comment vous en gardez la maîtrise.</p>
+  <p class="summary"><strong>En résumé : SolarDim n’a ni compte utilisateur ni serveur.</strong> Vos études, vos dossiers clients et vos photos restent sur votre appareil. Seules les coordonnées d’un chantier partent vers des services publics de calcul et de cartographie, pour produire l’étude et afficher la carte.</p>
+
+  <h2>Qui est responsable</h2>
+  <p>SolarDim est édité par Nicolas BILLARD, entrepreneur individuel, SIRET 813 484 227 00018.<br>
+  Contact : <a href="mailto:contact@solardim.eu">contact@solardim.eu</a></p>
+
+  <h2>Ce qui reste sur votre appareil</h2>
+  <p>Les données suivantes sont enregistrées <strong>uniquement sur votre appareil</strong> et ne nous sont jamais transmises :</p>
+  <ul>
+    <li>vos études et leurs réglages ;</li>
+    <li>les dossiers clients que vous saisissez : nom, adresse, téléphone, courriel, notes ;</li>
+    <li>les relevés de masque solaire et l’orientation des toitures ;</li>
+    <li>les photos de chantier, réduites et réenregistrées sans leurs métadonnées (position GPS, appareil) ;</li>
+    <li>votre profil d’installateur (raison sociale, coordonnées, logo), qui figure sur les fiches PDF que vous remettez à vos clients.</li>
+  </ul>
+  <p>Les données de vos clients vous sont confiées à vous, professionnel : vous en êtes responsable au sens du RGPD. SolarDim n’y a jamais accès.</p>
+  <p>Nous n’utilisons ni publicité, ni outil de mesure d’audience, ni rapport de plantage automatique.</p>
+
+  <h2>Ce qui quitte votre appareil, et pourquoi</h2>
+  <div class="table">
+  <table>
+    <thead><tr><th>Service</th><th>Ce qui est envoyé</th><th>Pourquoi</th></tr></thead>
+    <tbody>
+      <tr><td><strong>PVGIS</strong> (Commission européenne, Centre commun de recherche)</td><td>coordonnées du chantier, inclinaison et orientation des panneaux, puissance, horizon relevé</td><td>calculer la production solaire</td></tr>
+      <tr><td><strong>OpenStreetMap</strong> (fondation OpenStreetMap)</td><td>les tuiles de carte de la zone affichée, donc la zone approximative du chantier</td><td>afficher la carte</td></tr>
+      <tr><td><strong>Géocodage Android</strong> (fourni par Google sur la plupart des appareils)</td><td>l’adresse que vous recherchez, ou les coordonnées du chantier</td><td>trouver un lieu, déterminer le pays et la commune</td></tr>
+      <tr><td><strong>Localisation Android</strong> (services de localisation Google)</td><td>l’appareil détermine sa position</td><td>placer le chantier et caler la mesure du masque</td></tr>
+      <tr><td><strong>Nominatim</strong> (OpenStreetMap, client Windows)</td><td>l’adresse que vous recherchez, ou les coordonnées du chantier</td><td>trouver un lieu, déterminer le pays</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Aucune de ces requêtes ne contient votre nom, celui de vos clients ou leurs coordonnées personnelles. Elles sont soumises aux politiques de confidentialité de ces services, qui peuvent enregistrer l’adresse IP d’origine.</p>
+  <p>Les fiches PDF et les fichiers d’étude que vous <strong>exportez ou partagez</strong> vont où vous les envoyez : l’application et le destinataire que vous choisissez.</p>
+
+  <h2>Autorisations demandées sur Android</h2>
+  <ul>
+    <li><strong>Caméra</strong> : relever le masque solaire et photographier le chantier.</li>
+    <li><strong>Localisation</strong> : placer le chantier sur la carte et caler la mesure sur la position du soleil. La position approximative suffit pour la boussole.</li>
+    <li><strong>Internet</strong> : interroger les services listés ci-dessus.</li>
+  </ul>
+  <p>Les capteurs de mouvement (orientation, boussole) ne demandent pas d’autorisation ; leurs mesures restent sur l’appareil.</p>
+
+  <h2>Sauvegardes</h2>
+  <p><strong>Sauvegarde Android vers votre compte Google</strong> : vos dossiers clients, votre étude en cours et vos photos de chantier en sont <strong>exclus</strong>. Seuls vos réglages et votre profil d’installateur y figurent. Sur Android 11 et versions antérieures, le système ne distinguant pas sauvegarde en ligne et transfert, les dossiers ne sont pas sauvegardés du tout par Android ; l’application vous le signale.</p>
+  <p><strong>Transfert vers un nouveau téléphone</strong> : il copie aussi vos dossiers et vos photos, directement d’un appareil à l’autre.</p>
+  <p><strong>Sauvegarde SolarDim</strong> : le fichier que vous créez depuis l’application contient tous vos dossiers ; vous choisissez où il est enregistré.</p>
+
+  <h2>Durée de conservation et suppression</h2>
+  <p>Vos données restent sur votre appareil tant que vous les y gardez. Vous pouvez supprimer une étude ou un dossier depuis l’application ; désinstaller l’application efface toutes ses données de l’appareil. Les cartes et résultats de calcul mis en cache sont purgés automatiquement.</p>
+
+  <h2>Vos droits</h2>
+  <p>Comme nous ne détenons aucune donnée vous concernant, vos droits d’accès, de rectification et d’effacement s’exercent directement dans l’application. Pour toute question, écrivez à <a href="mailto:contact@solardim.eu">contact@solardim.eu</a>. Vous pouvez aussi saisir la CNIL (<a href="https://www.cnil.fr">www.cnil.fr</a>).</p>
+
+  <h2>Ce site</h2>
+  <p>Ce site est hébergé par GitHub Pages (GitHub, Inc.), qui peut enregistrer l’adresse IP des visiteurs pour assurer son service et sa sécurité. Il ne dépose aucun cookie et n’utilise aucune mesure d’audience.</p>
+
+  <h2>Modifications</h2>
+  <p>Toute modification de cette politique sera publiée sur cette page, avec sa date de mise à jour.</p>
+
+  <footer><a href="./">SolarDim</a> · <a href="mailto:contact@solardim.eu">contact@solardim.eu</a></footer>
+</main>
+</body>
+</html>
