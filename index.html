@@ -3,24 +3,181 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SolarDim</title>
+<title>SolarDim — étude solaire pour installateurs</title>
+<link rel="alternate" hreflang="en" href="https://solardim.eu/en/">
+<link rel="alternate" hreflang="fr" href="https://solardim.eu/">
+<meta name="description" content="SolarDim dimensionne les installations solaires des installateurs : sites autonomes, autoconsommation et solaire thermique. Masque solaire relevé sur le toit, fiche client PDF. Android et Windows.">
 <style>
-  :root { --paper: #FAF6EF; --ink: #2E3A40; --accent: #C05838; }
-  body { margin: 0; min-height: 100vh; display: grid; place-items: center;
-         background: var(--paper); color: var(--ink);
-         font: 17px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 34rem; padding: 2rem 1rem; }
-  h1 { color: var(--accent); font-family: Georgia, serif; font-weight: 600; margin: 0 0 .5rem; }
+  @font-face { font-family: "Fraunces"; src: url("fonts/fraunces.ttf") format("truetype"); font-display: swap; }
+  @font-face { font-family: "DM Sans"; src: url("fonts/dm_sans.ttf") format("truetype"); font-weight: 100 1000; font-display: swap; }
+  :root { --paper: #FAF6EF; --card: #FFFFFF; --ink: #2E3A40; --muted: #5E6A70; --line: #E3DACB; --accent: #C05838; --sage: #7E9A7A; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+         font: 17px/1.6 "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif; }
   a { color: var(--accent); }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.2; margin: 0; }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 16px; }
+  header { border-top: 6px solid var(--accent); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1rem; padding-bottom: 1rem; }
+  .brand { font-family: "Fraunces", Georgia, serif; font-size: 1.5rem; color: var(--ink); text-decoration: none; }
+  .brand span { color: var(--accent); }
+  nav { display: flex; gap: 1.2rem; flex-wrap: wrap; font-size: .95rem; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--accent); }
+  .hero { padding: 3.5rem 16px 2.5rem; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); max-width: 20ch; }
+  .hero p { font-size: 1.15rem; color: var(--muted); max-width: 40rem; margin: 1.2rem 0 1.8rem; }
+  .hero p.soon { font-size: .95rem; margin: 1rem 0 0; }
+  .cta { display: flex; gap: .8rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .75rem 1.3rem; border-radius: 999px; text-decoration: none; font-weight: 600; }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.soft { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+  section { padding: 3rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin-bottom: .6rem; }
+  .lead { color: var(--muted); max-width: 44rem; margin: 0 0 2rem; }
+  .modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.2rem; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .card img { display: block; width: 100%; height: auto; background: var(--paper); }
+  .card div { padding: 1rem 1.2rem 1.3rem; }
+  .card h3 { font-size: 1.25rem; margin-bottom: .4rem; }
+  .card p { margin: 0; color: var(--muted); font-size: .97rem; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+  .split.rev > :first-child { order: 2; }
+  .shot { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: .8rem; margin: 0; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .stack .shot + .shot { margin-top: 1rem; }
+  .caption { font-size: .85rem; color: var(--muted); margin-top: .4rem; }
+  ul.does { margin: .8rem 0 0; padding-left: 1.2rem; font-size: 1.15rem; }
+  ul.does li { margin: .3rem 0; }
+  ul.facts { list-style: none; padding: 0; margin: 1.2rem 0 0; }
+  ul.facts li { padding: .5rem 0 .5rem 1.6rem; position: relative; border-bottom: 1px solid var(--line); }
+  ul.facts li::before { content: ""; position: absolute; left: 0; top: 1.05rem; width: .7rem; height: .7rem; border-radius: 50%; background: var(--sage); }
+  footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); font-size: .95rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  @media (max-width: 760px) {
+    .split { grid-template-columns: 1fr; gap: 1.5rem; }
+    .split.rev > :first-child { order: 0; }
+    nav a:not(.lang) { display: none; }
+  }
 </style>
 </head>
 <body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="./">Solar<span>Dim</span></a>
+    <nav>
+      <a href="#modules">Modules</a>
+      <a href="#toit">Sur le toit</a>
+      <a href="#fiche">La fiche client</a>
+      <a href="#bureau">Au bureau</a>
+      <a href="#contact">Contact</a>
+      <a class="lang" href="en/" hreflang="en" lang="en">English</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-  <h1>SolarDim</h1>
-  <p>Dimensionnement solaire pour installateurs : sites autonomes, autoconsommation et solaire thermique.</p>
-  <p>Ce site est en préparation.</p>
-  <p>Contact : <a href="mailto:contact@solardim.eu">contact@solardim.eu</a></p>
-  <p><a href="confidentialite">Politique de confidentialité</a></p>
+  <div class="wrap hero">
+    <h1>Un seul outil pour tous vos projets solaires.</h1>
+    <p>SolarDim dimensionne vos installations solaires — sites autonomes, autoconsommation et solaire thermique — heure par heure, à partir des données PVGIS de la Commission européenne et de l’horizon réel du chantier.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:contact@solardim.eu?subject=SolarDim%20%E2%80%94%20lancement">Être informé du lancement</a>
+      <a class="btn soft" href="#modules">Découvrir SolarDim</a>
+    </div>
+    <p class="soon">Bientôt disponible sur Android et Windows.</p>
+  </div>
+
+  <section id="modules">
+    <div class="wrap">
+      <h2>Trois systèmes, un seul outil</h2>
+      <p class="lead">Chaque étude se range dans le dossier de son client, se compare à ses variantes et sort en fiche PDF.</p>
+      <div class="modules">
+        <article class="card">
+          <img src="img/flow_autonome.webp" alt="Panneaux, batterie et maison isolée" width="1086" height="362" loading="lazy">
+          <div><h3>Site autonome</h3><p>Panneaux, batterie et groupe d’appoint pour un site sans réseau, éprouvés sur 18 années météo : la fiche retient une année défavorable.</p></div>
+        </article>
+        <article class="card">
+          <img src="img/flow_autoconso.webp" alt="Panneaux reliés à une maison et au réseau" width="1086" height="362" loading="lazy">
+          <div><h3>Autoconsommation</h3><p>Croise la production horaire, masque compris, avec un profil de consommation : ballon, voiture électrique, batterie, revente et amortissement.</p></div>
+        </article>
+        <article class="card">
+          <img src="img/flow_thermal.webp" alt="Capteurs solaires et ballon d’eau chaude" width="1086" height="362" loading="lazy">
+          <div><h3>Solaire thermique</h3><p>Dimensionne un chauffe-eau solaire et compare l’appoint à un chauffe-eau électrique, mois par mois.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="toit">
+    <div class="wrap split">
+      <div>
+        <h2>Sur le toit, votre téléphone</h2>
+        <ul class="does">
+          <li>relève l’horizon réel : arbres, bâtiments, relief.</li>
+          <li>mesure la pente et l’orientation du pan.</li>
+        </ul>
+        <ul class="facts">
+          <li>Relevé hors ligne, sans réseau.</li>
+          <li>Un masque par pan, recalé sur le soleil.</li>
+          <li>Export vers PVGIS et PVsyst.</li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <img src="img/fiche-masque.webp" alt="Masque solaire et visibilité saisonnière d’un pan sud" width="1001" height="840" loading="lazy">
+        <figcaption class="caption">Masque solaire d’un pan sud — étude de démonstration.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="fiche">
+    <div class="wrap split rev">
+      <div>
+        <h2>La fiche client</h2>
+        <p class="lead">Une fiche PDF claire, à imprimer ou à envoyer au téléphone.</p>
+        <ul class="facts">
+          <li>L’Europe, avec les tarifs et le facteur CO₂ de chaque zone électrique.</li>
+          <li>Production, autoconsommation, amortissement prudent sur vingt ans.</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <figure class="shot">
+          <img src="img/fiche-chiffres.webp" alt="Chiffres clés d’une fiche client" width="1001" height="529" loading="lazy">
+        </figure>
+        <figure class="shot">
+          <img src="img/fiche-mensuel.webp" alt="Bilan mensuel de production et de consommation" width="1001" height="523" loading="lazy">
+          <figcaption class="caption">Bologne, pan sud de 6 kWc — étude de démonstration.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="bureau">
+    <div class="wrap split">
+      <div>
+        <h2>Du téléphone au bureau</h2>
+        <p class="lead">L’étude commencée sur le chantier se rouvre sur le poste Windows, et l’inverse. Même calcul, même fiche, dossiers et sauvegardes communs aux deux.</p>
+        <p><a class="btn primary" href="mailto:contact@solardim.eu?subject=SolarDim%20%E2%80%94%20lancement">Être informé du lancement</a></p>
+      </div>
+      <figure class="shot">
+        <img src="img/chantier-bologne.webp" alt="Vue d’un chantier sur les toits de Bologne" width="749" height="562" loading="lazy">
+        <figcaption class="caption">Vue du chantier, prise pendant le relevé.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Vos études restent chez vous</h2>
+      <p class="lead">Dossiers clients, études et photos sont enregistrés sur votre appareil. Seules les coordonnées du chantier partent vers PVGIS et OpenStreetMap, pour le calcul et la carte. <a href="confidentialite">Politique de confidentialité</a></p>
+    </div>
+  </section>
 </main>
+
+<footer id="contact">
+  <div class="wrap">
+    <span>SolarDim — <a href="mailto:contact@solardim.eu">contact@solardim.eu</a></span>
+    <span><a href="mentions-legales">Mentions légales</a> · <a href="confidentialite">Confidentialité</a> · <a href="en/" hreflang="en" lang="en">English</a></span>
+  </div>
+</footer>
 </body>
 </html>

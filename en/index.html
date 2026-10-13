@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SolarDim — solar design for installers</title>
+<link rel="alternate" hreflang="en" href="https://solardim.eu/en/">
+<link rel="alternate" hreflang="fr" href="https://solardim.eu/">
+<meta name="description" content="SolarDim sizes solar installations for installers: off-grid sites, self-consumption and solar water heating. Shading mask surveyed on the roof, PDF client report. Android and Windows.">
+<style>
+  @font-face { font-family: "Fraunces"; src: url("../fonts/fraunces.ttf") format("truetype"); font-display: swap; }
+  @font-face { font-family: "DM Sans"; src: url("../fonts/dm_sans.ttf") format("truetype"); font-weight: 100 1000; font-display: swap; }
+  :root { --paper: #FAF6EF; --card: #FFFFFF; --ink: #2E3A40; --muted: #5E6A70; --line: #E3DACB; --accent: #C05838; --sage: #7E9A7A; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+         font: 17px/1.6 "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: var(--accent); }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.2; margin: 0; }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 16px; }
+  header { border-top: 6px solid var(--accent); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1rem; padding-bottom: 1rem; }
+  .brand { font-family: "Fraunces", Georgia, serif; font-size: 1.5rem; color: var(--ink); text-decoration: none; }
+  .brand span { color: var(--accent); }
+  nav { display: flex; gap: 1.2rem; flex-wrap: wrap; font-size: .95rem; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--accent); }
+  .hero { padding: 3.5rem 16px 2.5rem; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); max-width: 20ch; }
+  .hero p { font-size: 1.15rem; color: var(--muted); max-width: 40rem; margin: 1.2rem 0 1.8rem; }
+  .hero p.soon { font-size: .95rem; margin: 1rem 0 0; }
+  .cta { display: flex; gap: .8rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .75rem 1.3rem; border-radius: 999px; text-decoration: none; font-weight: 600; }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.soft { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+  section { padding: 3rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin-bottom: .6rem; }
+  .lead { color: var(--muted); max-width: 44rem; margin: 0 0 2rem; }
+  .modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.2rem; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .card img { display: block; width: 100%; height: auto; background: var(--paper); }
+  .card div { padding: 1rem 1.2rem 1.3rem; }
+  .card h3 { font-size: 1.25rem; margin-bottom: .4rem; }
+  .card p { margin: 0; color: var(--muted); font-size: .97rem; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+  .split.rev > :first-child { order: 2; }
+  .shot { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: .8rem; margin: 0; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .stack .shot + .shot { margin-top: 1rem; }
+  .caption { font-size: .85rem; color: var(--muted); margin-top: .4rem; }
+  ul.does { margin: .8rem 0 0; padding-left: 1.2rem; font-size: 1.15rem; }
+  ul.does li { margin: .3rem 0; }
+  ul.facts { list-style: none; padding: 0; margin: 1.2rem 0 0; }
+  ul.facts li { padding: .5rem 0 .5rem 1.6rem; position: relative; border-bottom: 1px solid var(--line); }
+  ul.facts li::before { content: ""; position: absolute; left: 0; top: 1.05rem; width: .7rem; height: .7rem; border-radius: 50%; background: var(--sage); }
+  footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); font-size: .95rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  @media (max-width: 760px) {
+    .split { grid-template-columns: 1fr; gap: 1.5rem; }
+    .split.rev > :first-child { order: 0; }
+    nav a:not(.lang) { display: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="./">Solar<span>Dim</span></a>
+    <nav>
+      <a href="#modules">Systems</a>
+      <a href="#toit">On the roof</a>
+      <a href="#fiche">Client report</a>
+      <a href="#bureau">At the office</a>
+      <a href="#contact">Contact</a>
+      <a class="lang" href="../" hreflang="fr" lang="fr">Français</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <h1>One tool for all your solar projects.</h1>
+    <p>SolarDim sizes your solar installations — off-grid sites, self-consumption and solar water heating — hour by hour, from the European Commission’s PVGIS data and the site’s real horizon.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:contact@solardim.eu?subject=SolarDim%20%E2%80%94%20launch">Get notified at launch</a>
+      <a class="btn soft" href="#modules">Discover SolarDim</a>
+    </div>
+    <p class="soon">Coming soon on Android and Windows.</p>
+  </div>
+
+  <section id="modules">
+    <div class="wrap">
+      <h2>Three systems, one tool</h2>
+      <p class="lead">Each study is filed under its client, compared with its variants and exported as a PDF report.</p>
+      <div class="modules">
+        <article class="card">
+          <img src="../img/flow_autonome.webp" alt="Panels, battery and an off-grid house" width="1086" height="362" loading="lazy">
+          <div><h3>Off-grid site</h3><p>Panels, battery and backup generator for a site with no grid, tested over 18 weather years: the report keeps an unfavourable year.</p></div>
+        </article>
+        <article class="card">
+          <img src="../img/flow_autoconso.webp" alt="Panels connected to a house and the grid" width="1086" height="362" loading="lazy">
+          <div><h3>Self-consumption</h3><p>Matches hourly production, shading included, with a consumption profile: water heater, electric car, battery, export and payback.</p></div>
+        </article>
+        <article class="card">
+          <img src="../img/flow_thermal.webp" alt="Solar collectors and a hot water tank" width="1086" height="362" loading="lazy">
+          <div><h3>Solar water heating</h3><p>Sizes a solar water heater and compares the backup with an electric water heater, month by month.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="toit">
+    <div class="wrap split">
+      <div>
+        <h2>On the roof, your phone</h2>
+        <ul class="does">
+          <li>surveys the real horizon: trees, buildings, terrain.</li>
+          <li>measures the roof’s tilt and orientation.</li>
+        </ul>
+        <ul class="facts">
+          <li>Works offline, with no signal.</li>
+          <li>One shading mask per roof face, aligned on the sun.</li>
+          <li>Export to PVGIS and PVsyst.</li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <img src="../img/fiche-masque.webp" alt="Shading mask and seasonal visibility of a south-facing roof" width="1001" height="840" loading="lazy">
+        <figcaption class="caption">Shading mask of a south-facing roof — demo study.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="fiche">
+    <div class="wrap split rev">
+      <div>
+        <h2>The client report</h2>
+        <p class="lead">A clear PDF report, to print or to send to a phone.</p>
+        <ul class="facts">
+          <li>Europe, with the tariffs and CO₂ factor of each grid zone.</li>
+          <li>Production, self-consumption, conservative twenty-year payback.</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <figure class="shot">
+          <img src="../img/fiche-chiffres.webp" alt="Key figures of a client report" width="1001" height="529" loading="lazy">
+        </figure>
+        <figure class="shot">
+          <img src="../img/fiche-mensuel.webp" alt="Monthly production and consumption" width="1001" height="523" loading="lazy">
+          <figcaption class="caption">Bologna, 6 kWp south-facing roof — demo study (report in French).</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="bureau">
+    <div class="wrap split">
+      <div>
+        <h2>From the phone to the office</h2>
+        <p class="lead">A study started on site reopens on the Windows computer, and the other way round. Same calculation, same report, folders and backups shared by both.</p>
+        <p><a class="btn primary" href="mailto:contact@solardim.eu?subject=SolarDim%20%E2%80%94%20launch">Get notified at launch</a></p>
+      </div>
+      <figure class="shot">
+        <img src="../img/chantier-bologne.webp" alt="Site view over the rooftops of Bologna" width="749" height="562" loading="lazy">
+        <figcaption class="caption">Site view, taken during the survey.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Your studies stay with you</h2>
+      <p class="lead">Client folders, studies and photos are stored on your device. Only the site’s coordinates go to PVGIS and OpenStreetMap, for the calculation and the map. <a href="../confidentialite" hreflang="fr">Privacy policy (in French)</a></p>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <span>SolarDim — <a href="mailto:contact@solardim.eu">contact@solardim.eu</a></span>
+    <span><a href="../mentions-legales" hreflang="fr">Legal notice</a> · <a href="../confidentialite" hreflang="fr">Privacy</a> · <a href="../" hreflang="fr" lang="fr">Français</a></span>
+  </div>
+</footer>
+</body>
+</html>
